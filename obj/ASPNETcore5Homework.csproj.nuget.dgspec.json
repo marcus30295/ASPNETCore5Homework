@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\.Net5\\solution1\\ASPNETcore5Homework\\ASPNETcore5Homework.csproj": {}
+    "C:\\.Net5\\solution1\\ASPNETcore5Homework\\ASPNETcore5Homework.csproj": {}
   },
   "projects": {
-    "c:\\.Net5\\solution1\\ASPNETcore5Homework\\ASPNETcore5Homework.csproj": {
+    "C:\\.Net5\\solution1\\ASPNETcore5Homework\\ASPNETcore5Homework.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\.Net5\\solution1\\ASPNETcore5Homework\\ASPNETcore5Homework.csproj",
+        "projectUniqueName": "C:\\.Net5\\solution1\\ASPNETcore5Homework\\ASPNETcore5Homework.csproj",
         "projectName": "ASPNETcore5Homework",
-        "projectPath": "c:\\.Net5\\solution1\\ASPNETcore5Homework\\ASPNETcore5Homework.csproj",
+        "projectPath": "C:\\.Net5\\solution1\\ASPNETcore5Homework\\ASPNETcore5Homework.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "c:\\.Net5\\solution1\\ASPNETcore5Homework\\obj\\",
+        "outputPath": "C:\\.Net5\\solution1\\ASPNETcore5Homework\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -58,9 +58,37 @@
                 "NU1605"
               ]
             },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
+            },
+            "ValueInjecter": {
+              "target": "Package",
+              "version": "[3.2.0, )"
             }
           },
           "imports": [
