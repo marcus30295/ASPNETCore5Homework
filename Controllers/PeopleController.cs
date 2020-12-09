@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ASPNETcore5Homework.Models;
+using Omu.ValueInjecter;
 
 namespace ASPNETcore5Homework.Controllers
 {
@@ -41,29 +42,14 @@ namespace ASPNETcore5Homework.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPerson(int id, Person person)
         {
-            if (id != person.Id)
-            {
-                return BadRequest();
-            }
+           var c = _context.People.Find(id);
+            //valueInjecter
+            _context.InjectFrom(c);
 
-            _context.Entry(person).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PersonExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
+            await _context.SaveChangesAsync();
+            
+         
             return NoContent();
         }
 
@@ -83,20 +69,14 @@ namespace ASPNETcore5Homework.Controllers
         public async Task<IActionResult> DeletePerson(int id)
         {
             var person = await _context.People.FindAsync(id);
-            if (person == null)
-            {
-                return NotFound();
-            }
+          
 
             _context.People.Remove(person);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(person);
         }
 
-        private bool PersonExists(int id)
-        {
-            return _context.People.Any(e => e.Id == id);
-        }
+       
     }
 }
