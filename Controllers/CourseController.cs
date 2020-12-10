@@ -66,5 +66,41 @@ namespace ASPNETcore5Homework.Controllers
 
             return Ok(c);
         }
+
+
+        [HttpGet]
+        [Route("vwCourseStudent")]
+        public async Task<ActionResult<IEnumerable<VwCourseStudent>>> vwCourseStudent()
+        {
+            return await _context.VwCourseStudents.ToListAsync();
+
+        }
+
+        [HttpGet]
+        [Route("vwCourseStudentCount")]
+        public async Task<ActionResult<IEnumerable<VwCourseStudentCount>>> vwCourseStudentCount()
+        {
+            return await _context.VwCourseStudentCounts.ToListAsync();
+
+        }
+
+
+        [HttpGet]
+        [Route("VwDepartmentCourseCount")]
+        public async Task<ActionResult<IEnumerable<VwDepartmentCourseCount>>> VwDepartmentCourseCount()
+        {
+            return await _context.VwDepartmentCourseCounts.ToListAsync();
+
+        }
+
+        [HttpGet]
+        [Route("Query/VwDepartmentCourseCount")]
+        public async Task<ActionResult<IEnumerable<VwDepartmentCourseCount>>> QueryVwDepartmentCourseCount()
+        {
+
+            var c = await _context.VwDepartmentCourseCounts.FromSqlRaw($"Select * from VwDepartmentCourseCount").ToArrayAsync();
+            return c;
+
+        }
     }
 }

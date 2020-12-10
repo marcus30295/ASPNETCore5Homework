@@ -21,6 +21,7 @@ namespace ASPNETcore5Homework.Models
         public DateTime? EnrollmentDate { get; set; }
         public string Discriminator { get; set; }
 
+ public DateTime DateModified { get; set;}
         public virtual OfficeAssignment OfficeAssignment { get; set; }
         public virtual ICollection<CourseInstructor> CourseInstructors { get; set; }
         public virtual ICollection<Department> Departments { get; set; }
