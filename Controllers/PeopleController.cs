@@ -25,7 +25,7 @@ namespace ASPNETcore5Homework.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Person>>> GetPeople()
         {
-            return await _context.People.ToListAsync();
+            return await _context.People.Where(x => x.IsDeleted == false).ToListAsync();
         }
 
         // GET: api/People/5
@@ -69,9 +69,11 @@ namespace ASPNETcore5Homework.Controllers
         public async Task<IActionResult> DeletePerson(int id)
         {
             var person = await _context.People.FindAsync(id);
-          
 
-            _context.People.Remove(person);
+            person.IsDeleted = true;
+
+            _context.InjectFrom(person);
+
             await _context.SaveChangesAsync();
 
             return Ok(person);

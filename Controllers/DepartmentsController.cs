@@ -23,7 +23,7 @@ namespace ASPNETcore5Homework.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Department>>> GetDepartments()
         {
-            return await _context.Departments.ToListAsync();
+            return await _context.Departments.Where(x => x.IsDeleted == false).ToListAsync();
         }
 
         // GET: api/Departments/5
@@ -65,7 +65,9 @@ namespace ASPNETcore5Homework.Controllers
         {
             var department = await _context.Departments.FindAsync(id);
 
-            _context.Departments.Remove(department);
+            department.IsDeleted = true;
+
+            _context.InjectFrom(department);
             await _context.SaveChangesAsync();
 
             return Ok(department);

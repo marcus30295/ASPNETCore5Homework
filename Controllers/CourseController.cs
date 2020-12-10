@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ASPNETcore5Homework.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +23,7 @@ namespace ASPNETcore5Homework.Controllers
         [Route("GetCourse")]
         public async Task<ActionResult<IEnumerable<Course>>> GetCourse()
         {
-            return await _context.Courses.ToListAsync();
+            return await _context.Courses.Where(x=>x.IsDeleted == false).ToListAsync();
         }
 
         [HttpGet("{id}")]
@@ -60,7 +61,9 @@ namespace ASPNETcore5Homework.Controllers
         public async Task<IActionResult> DeleteCourse(int id)
         {
             var c = _context.Courses.Find(id);
-            _context.Courses.Remove(c);
+            c.IsDeleted = true;
+
+            _context.InjectFrom(c);
 
             await _context.SaveChangesAsync();
 
