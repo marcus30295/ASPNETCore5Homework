@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -227,8 +229,39 @@ namespace ASPNETcore5Homework.Models
             });
 
             OnModelCreatingPartial(modelBuilder);
+
+
+
+
+
+        }
+
+
+        public override int SaveChanges()
+        {
+            var now = DateTime.Now;
+            var entries = ChangeTracker
+                .Entries()
+                .Where(e => e.State == EntityState.Modified || e.State == EntityState.Deleted);
+
+            foreach (var entityEntry in entries)
+            {
+                // 更新該筆資料異動時間
+                entityEntry.CurrentValues["DateModified"] = now;
+
+                // 有IsDeleted欄位註記為刪除狀態，反之則刪除資料
+                if (entityEntry.State == EntityState.Deleted && entityEntry.Entity.GetType().GetProperty("IsDeleted") != null)
+                {
+                    entityEntry.CurrentValues["IsDeleted"] = true;
+                    entityEntry.State = EntityState.Modified;
+                }
+            }
+
+            return base.SaveChanges();
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+
     }
 }
