@@ -14,9 +14,9 @@ namespace ASPNETcore5Homework.Controllers
     [ApiController]
     public class OfficeAssignmentsController : ControllerBase
     {
-        private readonly ContosoUniversityContext _context;
+        private readonly ContosouniversityContext _context;
 
-        public OfficeAssignmentsController(ContosoUniversityContext context)
+        public OfficeAssignmentsController(ContosouniversityContext context)
         {
             _context = context;
         }
@@ -25,14 +25,14 @@ namespace ASPNETcore5Homework.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<OfficeAssignment>>> GetOfficeAssignments()
         {
-            return await _context.OfficeAssignments.ToListAsync();
+            return await _context.OfficeAssignment.ToListAsync();
         }
 
         // GET: api/OfficeAssignments/5
         [HttpGet("{id}")]
         public async Task<ActionResult<OfficeAssignment>> GetOfficeAssignment(int id)
         {
-            var officeAssignment = await _context.OfficeAssignments.FindAsync(id);
+            var officeAssignment = await _context.OfficeAssignment.FindAsync(id);
 
 
             return officeAssignment;
@@ -43,7 +43,7 @@ namespace ASPNETcore5Homework.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutOfficeAssignment(int id, OfficeAssignment officeAssignment)
         {
-            var c = _context.Enrollments.Find(id);
+            var c = _context.OfficeAssignment.Find(id);
             //valueInjecter
             _context.InjectFrom(officeAssignment);
 
@@ -59,7 +59,7 @@ namespace ASPNETcore5Homework.Controllers
         [HttpPost]
         public async Task<ActionResult<OfficeAssignment>> PostOfficeAssignment(OfficeAssignment officeAssignment)
         {
-            _context.OfficeAssignments.Add(officeAssignment);
+            _context.OfficeAssignment.Add(officeAssignment);
             
             await _context.SaveChangesAsync();
             
@@ -70,9 +70,9 @@ namespace ASPNETcore5Homework.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOfficeAssignment(int id)
         {
-            var officeAssignment = await _context.OfficeAssignments.FindAsync(id);
+            var officeAssignment = await _context.OfficeAssignment.FindAsync(id);
 
-            _context.OfficeAssignments.Remove(officeAssignment);
+            _context.OfficeAssignment.Remove(officeAssignment);
             await _context.SaveChangesAsync();
 
             return Ok(officeAssignment);

@@ -12,25 +12,26 @@ namespace ASPNETcore5Homework.Controllers
     [ApiController]
     public class DepartmentsController : ControllerBase
     {
-        private readonly ContosoUniversityContext _context;
-
-        public DepartmentsController(ContosoUniversityContext context)
+        private readonly ContosouniversityContext _context;
+        private readonly ContosouniversityContextProcedures _Sp;
+        public DepartmentsController(ContosouniversityContext context,ContosouniversityContextProcedures Sp)
         {
             _context = context;
+            _Sp = Sp;
         }
 
         // GET: api/Departments
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Department>>> GetDepartments()
         {
-            return await _context.Departments.Where(x => x.IsDeleted == false).ToListAsync();
+            return await _context.Department.Where(x => x.IsDeleted == false).ToListAsync();
         }
 
         // GET: api/Departments/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Department>> GetDepartment(int id)
         {
-            var department = await _context.Departments.FindAsync(id);
+            var department = await _context.Department.FindAsync(id);
 
             return department;
         }
@@ -40,7 +41,7 @@ namespace ASPNETcore5Homework.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDepartment(int id, Department department)
         {
-            var c = _context.Departments.Find(id);
+            var c = _context.Department.Find(id);
             //valueInjecter
             _context.InjectFrom(department);
             await _context.SaveChangesAsync();
@@ -53,7 +54,7 @@ namespace ASPNETcore5Homework.Controllers
         [HttpPost]
         public async Task<ActionResult<Department>> PostDepartment(Department department)
         {
-            _context.Departments.Add(department);
+            _context.Department.Add(department);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetDepartment", new {id = department.DepartmentId}, department);
@@ -63,7 +64,7 @@ namespace ASPNETcore5Homework.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDepartment(int id)
         {
-            var department = await _context.Departments.FindAsync(id);
+            var department = await _context.Department.FindAsync(id);
 
             department.IsDeleted = true;
 
@@ -73,9 +74,36 @@ namespace ASPNETcore5Homework.Controllers
             return Ok(department);
         }
 
-        private bool DepartmentExists(int id)
+        [HttpPost("~/apiPostBySP/[controller]")]
+        public ActionResult<Department> PostDepartmentBySP(Department model)
         {
-            return _context.Departments.Any(e => e.DepartmentId == id);
+
+            var result = _Sp.Department_Insert(model.Name, model.Budget, model.StartDate, model.InstructorId, null);
+
+            return Created("/api/Department", result);
         }
+
+
+        [HttpPut("~/apiPutBySP/[controller]")]
+        public IActionResult InsertDepartmentBySP(int id, Department model)
+        {
+            var result = _Sp.Department_Update(id, model.Name, model.Budget, model.StartDate, model.InstructorId, null);
+
+            return NoContent();
+        }
+
+
+
+        [HttpDelete("~/apiDeleteBySP/[controller]")]
+        public ActionResult<Department> DeleteDepartmentBySP(int id)
+        {
+            var data = _context.Department.Find(id);
+
+            var result = _Sp.Department_Delete(id, data.RowVersion);
+
+            return Ok(data);
+        }
+
+    
     }
 }

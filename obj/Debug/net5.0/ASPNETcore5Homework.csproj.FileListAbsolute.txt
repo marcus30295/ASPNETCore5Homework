@@ -155,3 +155,5 @@ C:\.Net5\solution1\ASPNETcore5Homework\obj\Debug\net5.0\ref\ASPNETcore5Homework.
 C:\.Net5\solution1\ASPNETcore5Homework\obj\Debug\net5.0\ASPNETcore5Homework.pdb
 C:\.Net5\solution1\ASPNETcore5Homework\obj\Debug\net5.0\ASPNETcore5Homework.genruntimeconfig.cache
 C:\.Net5\solution1\ASPNETcore5Homework\obj\Debug\net5.0\ASPNETcore5Homework.csprojAssemblyReference.cache
+C:\.Net5\solution1\ASPNETcore5Homework\bin\Debug\net5.0\efpt.config.json
+C:\.Net5\solution1\ASPNETcore5Homework\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll

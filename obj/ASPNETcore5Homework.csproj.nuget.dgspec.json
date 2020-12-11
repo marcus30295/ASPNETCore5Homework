@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\.Net5\\solution1\\ASPNETcore5Homework\\ASPNETcore5Homework.csproj": {}
+    "c:\\.Net5\\solution1\\ASPNETcore5Homework\\ASPNETcore5Homework.csproj": {}
   },
   "projects": {
-    "C:\\.Net5\\solution1\\ASPNETcore5Homework\\ASPNETcore5Homework.csproj": {
+    "c:\\.Net5\\solution1\\ASPNETcore5Homework\\ASPNETcore5Homework.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\.Net5\\solution1\\ASPNETcore5Homework\\ASPNETcore5Homework.csproj",
+        "projectUniqueName": "c:\\.Net5\\solution1\\ASPNETcore5Homework\\ASPNETcore5Homework.csproj",
         "projectName": "ASPNETcore5Homework",
-        "projectPath": "C:\\.Net5\\solution1\\ASPNETcore5Homework\\ASPNETcore5Homework.csproj",
+        "projectPath": "c:\\.Net5\\solution1\\ASPNETcore5Homework\\ASPNETcore5Homework.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\.Net5\\solution1\\ASPNETcore5Homework\\obj\\",
+        "outputPath": "c:\\.Net5\\solution1\\ASPNETcore5Homework\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -66,7 +66,7 @@
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[5.0.0, )"
+              "version": "[5.0.1, )"
             },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",

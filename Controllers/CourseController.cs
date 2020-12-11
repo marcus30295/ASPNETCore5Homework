@@ -12,9 +12,9 @@ namespace ASPNETcore5Homework.Controllers
     [ApiController]
     public class CourseController : ControllerBase
     {
-        private readonly ContosoUniversityContext _context;
+        private readonly ContosouniversityContext _context;
 
-        public CourseController(ContosoUniversityContext context)
+        public CourseController(ContosouniversityContext context)
         {
             _context = context;
         }
@@ -23,13 +23,13 @@ namespace ASPNETcore5Homework.Controllers
         [Route("GetCourse")]
         public async Task<ActionResult<IEnumerable<Course>>> GetCourse()
         {
-            return await _context.Courses.Where(x=>x.IsDeleted == false).ToListAsync();
+            return await _context.Course.Where(x=>x.IsDeleted == false).ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Course>> GetCourse(int id)
         {
-            return await _context.Courses.FindAsync(id);
+            return await _context.Course.FindAsync(id);
         }
 
         // PUT: api/Course/5
@@ -37,7 +37,7 @@ namespace ASPNETcore5Homework.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCourse(int id, Course course)
         {
-            var c = _context.Courses.Find(id);
+            var c = _context.Course.Find(id);
             //valueInjecter
             c.InjectFrom(course);
             await _context.SaveChangesAsync();
@@ -50,7 +50,7 @@ namespace ASPNETcore5Homework.Controllers
         [HttpPost]
         public async Task<ActionResult<Course>> PostCourse(Course course)
         {
-            _context.Courses.Add(course);
+            _context.Course.Add(course);
             await _context.SaveChangesAsync();
 
             return Created("/api/Course/" + course.CourseId, course);
@@ -60,7 +60,7 @@ namespace ASPNETcore5Homework.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCourse(int id)
         {
-            var c = _context.Courses.Find(id);
+            var c = _context.Course.Find(id);
             c.IsDeleted = true;
 
             _context.InjectFrom(c);
@@ -73,7 +73,7 @@ namespace ASPNETcore5Homework.Controllers
 
         [HttpGet]
         [Route("vwCourseStudent")]
-        public async Task<ActionResult<IEnumerable<VwCourseStudent>>> vwCourseStudent()
+        public async Task<ActionResult<IEnumerable<VwCourseStudents>>> vwCourseStudent()
         {
             return await _context.VwCourseStudents.ToListAsync();
 
@@ -83,7 +83,7 @@ namespace ASPNETcore5Homework.Controllers
         [Route("vwCourseStudentCount")]
         public async Task<ActionResult<IEnumerable<VwCourseStudentCount>>> vwCourseStudentCount()
         {
-            return await _context.VwCourseStudentCounts.ToListAsync();
+            return await _context.VwCourseStudentCount.ToListAsync();
 
         }
 
@@ -92,7 +92,7 @@ namespace ASPNETcore5Homework.Controllers
         [Route("VwDepartmentCourseCount")]
         public async Task<ActionResult<IEnumerable<VwDepartmentCourseCount>>> VwDepartmentCourseCount()
         {
-            return await _context.VwDepartmentCourseCounts.ToListAsync();
+            return await _context.VwDepartmentCourseCount.ToListAsync();
 
         }
 
@@ -101,7 +101,7 @@ namespace ASPNETcore5Homework.Controllers
         public async Task<ActionResult<IEnumerable<VwDepartmentCourseCount>>> QueryVwDepartmentCourseCount()
         {
 
-            var c = await _context.VwDepartmentCourseCounts.FromSqlRaw($"Select * from VwDepartmentCourseCount").ToArrayAsync();
+            var c = await _context.VwDepartmentCourseCount.FromSqlRaw($"Select * from VwDepartmentCourseCount").ToArrayAsync();
             return c;
 
         }

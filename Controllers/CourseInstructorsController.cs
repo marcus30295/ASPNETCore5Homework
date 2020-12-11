@@ -11,9 +11,9 @@ namespace ASPNETcore5Homework.Controllers
     [ApiController]
     public class CourseInstructorsController : ControllerBase
     {
-        private readonly ContosoUniversityContext _context;
+        private readonly ContosouniversityContext _context;
 
-        public CourseInstructorsController(ContosoUniversityContext context)
+        public CourseInstructorsController(ContosouniversityContext context)
         {
             _context = context;
         }
@@ -22,14 +22,14 @@ namespace ASPNETcore5Homework.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CourseInstructor>>> GetCourseInstructors()
         {
-            return await _context.CourseInstructors.ToListAsync();
+            return await _context.CourseInstructor.ToListAsync();
         }
 
         // GET: api/CourseInstructors/5
         [HttpGet("{id}")]
         public async Task<ActionResult<CourseInstructor>> GetCourseInstructor(int id)
         {
-            return await _context.CourseInstructors.FindAsync(id);
+            return await _context.CourseInstructor.FindAsync(id);
         }
 
         // PUT: api/CourseInstructors/5
@@ -37,7 +37,7 @@ namespace ASPNETcore5Homework.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCourseInstructor(int id, CourseInstructor courseInstructor)
         {
-            var c = _context.CourseInstructors.Find(id);
+            var c = _context.CourseInstructor.Find(id);
             //valueInjecter
             _context.InjectFrom(courseInstructor);
             await _context.SaveChangesAsync();
@@ -50,7 +50,7 @@ namespace ASPNETcore5Homework.Controllers
         [HttpPost]
         public async Task<ActionResult<CourseInstructor>> PostCourseInstructor(CourseInstructor courseInstructor)
         {
-            _context.CourseInstructors.Add(courseInstructor);
+            _context.CourseInstructor.Add(courseInstructor);
 
             await _context.SaveChangesAsync();
 
@@ -62,10 +62,10 @@ namespace ASPNETcore5Homework.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCourseInstructor(int id)
         {
-            var courseInstructor = await _context.CourseInstructors.FindAsync(id);
+            var courseInstructor = await _context.CourseInstructor.FindAsync(id);
 
 
-            _context.CourseInstructors.Remove(courseInstructor);
+            _context.CourseInstructor.Remove(courseInstructor);
             await _context.SaveChangesAsync();
 
             return Ok(courseInstructor);

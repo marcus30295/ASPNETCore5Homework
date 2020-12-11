@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ASPNETcore5Homework.Migrations
 {
-    [DbContext(typeof(ContosoUniversityContext))]
+    [DbContext(typeof(ContosouniversityContext))]
     [Migration("20201210163045_AddDateModified")]
     partial class AddDateModified
     {

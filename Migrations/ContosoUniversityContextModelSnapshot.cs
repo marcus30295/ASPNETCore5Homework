@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ASPNETcore5Homework.Migrations
 {
-    [DbContext(typeof(ContosoUniversityContext))]
+    [DbContext(typeof(ContosouniversityContext))]
     partial class ContosoUniversityContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

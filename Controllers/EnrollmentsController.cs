@@ -14,9 +14,9 @@ namespace ASPNETcore5Homework.Controllers
     [ApiController]
     public class EnrollmentsController : ControllerBase
     {
-        private readonly ContosoUniversityContext _context;
+        private readonly ContosouniversityContext _context;
 
-        public EnrollmentsController(ContosoUniversityContext context)
+        public EnrollmentsController(ContosouniversityContext context)
         {
             _context = context;
         }
@@ -25,14 +25,14 @@ namespace ASPNETcore5Homework.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Enrollment>>> GetEnrollments()
         {
-            return await _context.Enrollments.ToListAsync();
+            return await _context.Enrollment.ToListAsync();
         }
 
         // GET: api/Enrollments/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Enrollment>> GetEnrollment(int id)
         {
-            var enrollment = await _context.Enrollments.FindAsync(id);
+            var enrollment = await _context.Enrollment.FindAsync(id);
 
             
             return enrollment;
@@ -45,7 +45,7 @@ namespace ASPNETcore5Homework.Controllers
         {
 
 
-            var c = _context.Enrollments.Find(id);
+            var c = _context.Enrollment.Find(id);
             //valueInjecter
             _context.InjectFrom(enrollment);
 
@@ -59,7 +59,7 @@ namespace ASPNETcore5Homework.Controllers
         [HttpPost]
         public async Task<ActionResult<Enrollment>> PostEnrollment(Enrollment enrollment)
         {
-            _context.Enrollments.Add(enrollment);
+            _context.Enrollment.Add(enrollment);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetEnrollment", new { id = enrollment.EnrollmentId }, enrollment);
@@ -69,9 +69,9 @@ namespace ASPNETcore5Homework.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEnrollment(int id)
         {
-            var enrollment = await _context.Enrollments.FindAsync(id);
+            var enrollment = await _context.Enrollment.FindAsync(id);
 
-            _context.Enrollments.Remove(enrollment);
+            _context.Enrollment.Remove(enrollment);
             await _context.SaveChangesAsync();
 
             return NoContent();

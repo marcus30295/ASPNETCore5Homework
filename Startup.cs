@@ -22,9 +22,10 @@ namespace ASPNETcore5Homework
         public void ConfigureServices(IServiceCollection services)
         {
 // using Microsoft.EntityFrameworkCore;
-            services.AddDbContext<ContosoUniversityContext>(options =>
+            services.AddDbContext<ContosouniversityContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddScoped<ContosouniversityContextProcedures>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

@@ -14,9 +14,9 @@ namespace ASPNETcore5Homework.Controllers
     [ApiController]
     public class PeopleController : ControllerBase
     {
-        private readonly ContosoUniversityContext _context;
+        private readonly ContosouniversityContext _context;
 
-        public PeopleController(ContosoUniversityContext context)
+        public PeopleController(ContosouniversityContext context)
         {
             _context = context;
         }
@@ -25,14 +25,14 @@ namespace ASPNETcore5Homework.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Person>>> GetPeople()
         {
-            return await _context.People.Where(x => x.IsDeleted == false).ToListAsync();
+            return await _context.Person.Where(x => x.IsDeleted == false).ToListAsync();
         }
 
         // GET: api/People/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Person>> GetPerson(int id)
         {
-            var person = await _context.People.FindAsync(id);
+            var person = await _context.Person.FindAsync(id);
 
             return person;
         }
@@ -42,7 +42,7 @@ namespace ASPNETcore5Homework.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPerson(int id, Person person)
         {
-           var c = _context.People.Find(id);
+           var c = _context.Person.Find(id);
             //valueInjecter
             _context.InjectFrom(c);
 
@@ -58,7 +58,7 @@ namespace ASPNETcore5Homework.Controllers
         [HttpPost]
         public async Task<ActionResult<Person>> PostPerson(Person person)
         {
-            _context.People.Add(person);
+            _context.Person.Add(person);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetPerson", new { id = person.Id }, person);
@@ -68,7 +68,7 @@ namespace ASPNETcore5Homework.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePerson(int id)
         {
-            var person = await _context.People.FindAsync(id);
+            var person = await _context.Person.FindAsync(id);
 
             person.IsDeleted = true;
 
