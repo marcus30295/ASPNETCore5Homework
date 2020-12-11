@@ -1,5 +1,5 @@
 
-README.md
+
 第一周回家作業
 
 本周的回家作業，希望大家練習 ASP.NET Core Web API 與 Entity Framework Core 的整合開發，請大家將寫好的作業上傳到 GitHub 並將專案網址分享到本貼文留言中即可。 作業內容如下：
